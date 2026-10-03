@@ -117,6 +117,9 @@ public class testAccount {
         account.deposit(5_000);
         assertEquals(5_000, account.checkBalance(inputedPin));
         assertThrows(IllegalArgumentException.class, () -> account.withdraw(-5_000));
+        assertEquals(5_000, account.checkBalance(inputedPin));
     }
+
+
 
 }
