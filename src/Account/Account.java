@@ -37,4 +37,9 @@ public class Account {
     private void validateWithdraw(int amount) {
         if(amount > balance)throw  new IllegalArgumentException("Invalid amount");
     }
+
+    public void changePin(String userPin,String newPin) {
+        validate(userPin);
+        this.pin = newPin;
+    }
 }
