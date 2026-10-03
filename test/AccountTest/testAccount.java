@@ -120,6 +120,15 @@ public class testAccount {
         assertEquals(5_000, account.checkBalance(inputedPin));
     }
 
+    @Test
 
+    public void test_that_withdrawal_on_an_empty_account_is_unsuccessful(){
+        String inputedPin = "1457";
+        account.checkBalance(inputedPin);
+        assertEquals(0, account.checkBalance(inputedPin));
+        assertThrows(IllegalArgumentException.class, () -> account.withdraw(4_000));
+        assertEquals(0, account.checkBalance(inputedPin));
+
+    }
 
 }
