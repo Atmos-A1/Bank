@@ -110,4 +110,13 @@ public class testAccount {
         assertThrows(IllegalArgumentException.class, () -> account.withdraw(0));
     }
 
+    @Test
+
+    public void test_that_withdrawal_of_a_negative_amount_is_unsuccessful(){
+        String inputedPin = "1457";
+        account.deposit(5_000);
+        assertEquals(5_000, account.checkBalance(inputedPin));
+        assertThrows(IllegalArgumentException.class, () -> account.withdraw(-5_000));
+    }
+
 }
