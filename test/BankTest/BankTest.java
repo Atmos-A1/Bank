@@ -147,6 +147,14 @@ public class BankTest {
         bank.transfer(10, 5, 2_000, "1234");
         assertEquals(6_000, bank.checkBalance(10,"1234"));
         assertEquals(7_000,  bank.checkBalance(5,"1234"));
+    }
 
+    @Test
+
+    public void test_that_transfer_to_a_non_existent_account_does_not_work(){
+        bank.createAccount("1234");
+        bank.deposit(1, 5_000);
+        assertThrows(IllegalArgumentException.class, () -> bank.transfer(1, 5, 2_000, "1234"));
+        assertEquals(5_000, bank.checkBalance(1, "1234"));
     }
 }
