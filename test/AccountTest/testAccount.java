@@ -74,7 +74,7 @@ public class testAccount {
         String inputedPin = "1457";
         account.deposit(5_000);
         assertEquals(5_000, account.checkBalance(inputedPin));
-        account.withdraw(2_000);
+        account.withdraw(2_000, inputedPin);
         assertEquals(3_000, account.checkBalance(inputedPin));
     }
 
@@ -85,7 +85,7 @@ public class testAccount {
         account.checkBalance(inputedPin);
         account.deposit(5_000);
         assertEquals(5_000, account.checkBalance(inputedPin));
-        assertThrows(IllegalArgumentException.class, () -> account.withdraw(6_000));
+        assertThrows(IllegalArgumentException.class, () -> account.withdraw(6_000, inputedPin));
     }
 
     @Test
@@ -95,7 +95,7 @@ public class testAccount {
         account.checkBalance(inputedPin);
         account.deposit(5_000);
         assertEquals(5_000, account.checkBalance(inputedPin));
-        account.withdraw(5_000);
+        account.withdraw(5_000, inputedPin);
         assertEquals(0, account.checkBalance(inputedPin));
     }
 
@@ -106,7 +106,7 @@ public class testAccount {
         account.checkBalance(inputedPin);
         account.deposit(5_000);
         assertEquals(5_000, account.checkBalance(inputedPin));
-        assertThrows(IllegalArgumentException.class, () -> account.withdraw(0));
+        assertThrows(IllegalArgumentException.class, () -> account.withdraw(0, inputedPin));
     }
 
     @Test
@@ -115,7 +115,7 @@ public class testAccount {
         String inputedPin = "1457";
         account.deposit(5_000);
         assertEquals(5_000, account.checkBalance(inputedPin));
-        assertThrows(IllegalArgumentException.class, () -> account.withdraw(-5_000));
+        assertThrows(IllegalArgumentException.class, () -> account.withdraw(-5_000, inputedPin));
         assertEquals(5_000, account.checkBalance(inputedPin));
     }
 
@@ -125,7 +125,7 @@ public class testAccount {
         String inputedPin = "1457";
         account.checkBalance(inputedPin);
         assertEquals(0, account.checkBalance(inputedPin));
-        assertThrows(IllegalArgumentException.class, () -> account.withdraw(4_000));
+        assertThrows(IllegalArgumentException.class, () -> account.withdraw(4_000, inputedPin));
         assertEquals(0, account.checkBalance(inputedPin));
 
     }

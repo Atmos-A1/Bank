@@ -28,7 +28,7 @@ public class Account {
         if(amount <= 0)throw  new IllegalArgumentException("Invalid amount");
     }
 
-    public void withdraw(int amount) {
+    public void withdraw(int amount, String pin) {
         isValid(amount);
         validateWithdraw(amount);
         balance -= amount;
