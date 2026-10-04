@@ -31,6 +31,7 @@ public class Account {
     public void withdraw(int amount, String pin) {
         isValid(amount);
         validateWithdraw(amount);
+        validate(pin);
         balance -= amount;
     }
 
