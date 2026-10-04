@@ -44,7 +44,7 @@ public class BankTest {
     }
 
     @Test
-    public void test_that_an_account_can_be_deposited_in_after_creation(){
+    public void test_that_an_account_has_zero_balance(){
         bank.getNumberOfCustomers();
         assertEquals(0, bank.getNumberOfCustomers());
         bank.createAccount("1457");
