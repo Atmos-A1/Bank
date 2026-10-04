@@ -40,6 +40,6 @@ public class Bank {
 
     public void withdraw(int accountNumber, int amount, String pin) {
         Account account = findAccount(accountNumber);
-        account.withdraw(amount);
+        account.withdraw(amount, pin);
     }
 }

@@ -87,4 +87,13 @@ public class BankTest {
         bank.withdraw(1,2_000, "1457");
         assertEquals(3_000,  bank.checkBalance(1,"1457"));
     }
+
+    @Test
+
+    public void test_that_the_bank_does_not_allow_the_user_to_withdraw_with_an_incorrect_pin(){
+        bank.createAccount("1234");
+        bank.deposit(1, 5_000);
+        assertThrows(IllegalArgumentException.class, () -> bank.withdraw(1, 2_000,  "1235"));
+        assertEquals(5_000, bank.checkBalance(1,"1234"));
+    }
 }
