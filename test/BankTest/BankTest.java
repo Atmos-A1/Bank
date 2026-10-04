@@ -124,4 +124,13 @@ public class BankTest {
         bank.createAccount("3578");
         assertThrows(IllegalArgumentException.class, () -> bank.transfer(1,2, 6_000, "1234"));
     }
+
+    @Test
+
+    public void test_that_transfer_of_negative_amounts_between_accounts_does_not_work(){
+        bank.createAccount("1234");
+        bank.deposit(1, 5_000);
+        bank.createAccount("3434");
+        assertThrows(IllegalArgumentException.class, () -> bank.transfer(1,2, -2_000, "1234"));
+    }
 }
