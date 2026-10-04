@@ -32,4 +32,14 @@ public class Bank {
         }
         return accounts.get(accountNumber - 1);
     }
+
+    public void deposit(int accountNumber, int amount) {
+        Account account = findAccount(accountNumber);
+        account.deposit(amount);
+    }
+
+    public void withdraw(int accountNumber, int amount, String pin) {
+        Account account = findAccount(accountNumber);
+        account.withdraw(amount);
+    }
 }

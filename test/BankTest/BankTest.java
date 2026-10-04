@@ -62,5 +62,29 @@ public class BankTest {
 
     @Test
 
-    public voi
+    public void test_that_an_account_balance_cannot_be_accessed_with_the_wrong_pin(){
+        assertEquals(0, bank.getNumberOfCustomers());
+        bank.createAccount("1457");
+        assertThrows(IllegalArgumentException.class, () -> bank.checkBalance(1,"1458"));
+    }
+
+    @Test
+
+    public void test_that_an_account_that_exists_can_be_deposited_into(){
+        assertEquals(0, bank.getNumberOfCustomers());
+        bank.createAccount("1457");
+        bank.deposit(1, 5_000);
+        assertEquals(5_000, bank.checkBalance(1,"1457"));
+    }
+
+    @Test
+
+    public void test_that_an_account_that_exists_can_be_deposited_into_after_creation_and_withdrawn_from(){
+        assertEquals(0, bank.getNumberOfCustomers());
+        bank.createAccount("1457");
+        bank.deposit(1, 5_000);
+        assertEquals(5_000, bank.checkBalance(1,"1457"));
+        bank.withdraw(1,2_000, "1457");
+        assertEquals(3_000,  bank.checkBalance(1,"1457"));
+    }
 }
