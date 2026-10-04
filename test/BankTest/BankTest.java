@@ -107,4 +107,21 @@ public class BankTest {
         assertEquals(3_000, bank.checkBalance(1,"1234"));
         assertEquals(2_000, bank.checkBalance(2,"5463"));
     }
+
+    @Test
+
+    public void test_that_money_cannot_be_transferred_between_the_same_account(){
+        bank.createAccount("1234");
+        bank.deposit(1, 5_000);
+        assertThrows(IllegalArgumentException.class, () -> bank.transfer(1,1, 2_000, "1234"));
+    }
+
+    @Test
+
+    public void test_that_money_exceeding_an_account_balance_cannot_be_transferred(){
+        bank.createAccount("1234");
+        bank.deposit(1, 5_000);
+        bank.createAccount("3578");
+        assertThrows(IllegalArgumentException.class, () -> bank.transfer(1,2, 6_000, "1234"));
+    }
 }
