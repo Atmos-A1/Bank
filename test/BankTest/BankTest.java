@@ -133,4 +133,20 @@ public class BankTest {
         bank.createAccount("3434");
         assertThrows(IllegalArgumentException.class, () -> bank.transfer(1,2, -2_000, "1234"));
     }
+
+    @Test
+
+    public void test_that_transfer_between_multiple_accounts_work(){
+        for(int numberOfAccounts = 1; numberOfAccounts <= 10; numberOfAccounts++){
+            bank.createAccount("1234");
+            bank.deposit(numberOfAccounts, 5_000);
+        }
+        bank.transfer(1,10, 3_000, "1234");
+        assertEquals(2_000, bank.checkBalance(1,"1234"));
+        assertEquals(8_000, bank.checkBalance(10,"1234"));
+        bank.transfer(10, 5, 2_000, "1234");
+        assertEquals(6_000, bank.checkBalance(10,"1234"));
+        assertEquals(7_000,  bank.checkBalance(5,"1234"));
+
+    }
 }
