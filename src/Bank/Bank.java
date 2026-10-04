@@ -27,9 +27,7 @@ public class Bank {
     }
 
     private Account findAccount(int accountNumber){
-        if (accountNumber < 1 || accountNumber > accounts.size()) {
-            throw new IllegalArgumentException("Account number not found");
-        }
+        validateAccountNumber(accountNumber < 1 || accountNumber > accounts.size(), "Account number not found");
         return accounts.get(accountNumber - 1);
     }
 
@@ -41,5 +39,19 @@ public class Bank {
     public void withdraw(int accountNumber, int amount, String pin) {
         Account account = findAccount(accountNumber);
         account.withdraw(amount, pin);
+    }
+
+    public void transfer(int senderAccount, int receiverAccount, int amount, String pin) {
+        Account sourceAccount = findAccount(senderAccount);
+        Account targetAccount = findAccount(receiverAccount);
+        validateAccountNumber(sourceAccount == targetAccount, "cannot transfer to the same account");
+        sourceAccount.withdraw(amount, pin);
+        targetAccount.deposit(amount);
+    }
+
+    private static void validateAccountNumber(boolean sourceAccount, String message) {
+        if (sourceAccount) {
+            throw new IllegalArgumentException(message);
+        }
     }
 }

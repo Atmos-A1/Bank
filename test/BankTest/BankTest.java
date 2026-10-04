@@ -96,4 +96,15 @@ public class BankTest {
         assertThrows(IllegalArgumentException.class, () -> bank.withdraw(1, 2_000,  "1235"));
         assertEquals(5_000, bank.checkBalance(1,"1234"));
     }
+
+    @Test
+
+    public void test_that_money_can_be_transferred_between_two_accounts(){
+        bank.createAccount("1234");
+        bank.createAccount("5463");
+        bank.deposit(1, 5_000);
+        bank.transfer(1,2, 2_000, "1234");
+        assertEquals(3_000, bank.checkBalance(1,"1234"));
+        assertEquals(2_000, bank.checkBalance(2,"5463"));
+    }
 }
